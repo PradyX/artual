@@ -10,6 +10,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.prady.artual.fragments.HomeFragment;
+import com.prady.artual.fragments.SearchFragment;
+import com.prady.artual.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(coordinatorLayout, "Menu", Snackbar.LENGTH_LONG).show();
             }
         });
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+        }
     }
 
     @Override
@@ -42,10 +48,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bottom_search:
-                Snackbar.make(coordinatorLayout, "Search", Snackbar.LENGTH_LONG).show();
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.down_to_up, R.anim.slide_out_left, R.anim.up_to_down, R.anim.slide_out_to_right)
+                        .replace(R.id.container, new SearchFragment()).addToBackStack(null).commit();
                 break;
             case R.id.bottom_settings:
-                Snackbar.make(coordinatorLayout, "Settings", Snackbar.LENGTH_LONG).show();
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.down_to_up, R.anim.slide_out_left, R.anim.up_to_down, R.anim.slide_out_to_right)
+                        .replace(R.id.container, new SettingsFragment()).addToBackStack(null).commit();
                 break;
         }
         return super.onOptionsItemSelected(item);
