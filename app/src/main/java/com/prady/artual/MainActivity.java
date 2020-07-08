@@ -6,9 +6,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
 import com.prady.artual.fragments.HomeFragment;
 import com.prady.artual.fragments.SearchFragment;
@@ -18,11 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomAppBar bottomAppBar;
     private CoordinatorLayout coordinatorLayout;
+    private BottomSheetBehavior bottomSheet;
+    private ConstraintLayout constraintLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        constraintLayout = findViewById(R.id.bottom_sheets);
         coordinatorLayout = findViewById(R.id.coordinator_main);
         bottomAppBar = findViewById(R.id.bottom_bar);
         setSupportActionBar(bottomAppBar);
@@ -35,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
         }
+
+        bottomSheet = BottomSheetBehavior.from(constraintLayout);
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
     }
 
     @Override

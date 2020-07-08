@@ -34,4 +34,6 @@
         app:navigationContentDescription="@string/navigation"
         app:navigationIcon="@drawable/ic_menu" />
 
+    <include layout="@layout/bottom_sheets" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
