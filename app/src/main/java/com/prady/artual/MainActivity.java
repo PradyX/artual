@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private CoordinatorLayout coordinatorLayout;
     private BottomSheetBehavior bottomSheet;
     private ConstraintLayout constraintLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         bottomSheet = BottomSheetBehavior.from(constraintLayout);
+        bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
+
     }
 
     @Override

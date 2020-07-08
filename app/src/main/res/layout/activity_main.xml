@@ -20,6 +20,7 @@
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorAccent"
         app:fabCradleMargin="8dp"
+        style="@style/ShapeAppearance.App.SmallComponent"
         app:fabSize="auto"
         app:layout_anchor="@id/bottom_bar" />
 
